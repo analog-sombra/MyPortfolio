@@ -1,8 +1,8 @@
 "use strict";
 
-window.addEventListener("resize", () => {
-    location.reload();
-});
+// window.addEventListener("resize", () => {
+//     location.reload();
+// });
 
 setTimeout(() => {
   gsap.to(".loading", {
