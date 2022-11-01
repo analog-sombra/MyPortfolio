@@ -1,1754 +1,1270 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>| Analog Sombra</title>
-    <link rel="icon" type="image/png" href="./images/favicon.png" />
-    <script
-      src="https://kit.fontawesome.com/9877077290.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="./css/style.css" />
-    <style>
-      @import url(https://fonts.googleapis.com/css?family=Fredoka+One);
 
-      html {
-        scroll-behavior: smooth;
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>| Analog Sombra</title>
+  <link rel="icon" type="image/png" href="./images/favicon.png" />
+  <script src="https://kit.fontawesome.com/9877077290.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/style.css" />
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Fredoka+One);
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    #top-scroll {
+      display: none;
+      position: fixed;
+      bottom: 10px;
+      right: 15px;
+      z-index: 99;
+      cursor: pointer;
+    }
+
+    #navbar {
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    #navbar.hide {
+      top: -60px;
+    }
+
+    html::-webkit-scrollbar {
+      display: none;
+    }
+
+    .maincard {
+      transform-style: preserve-3d;
+      transform: scale(1);
+    }
+
+    .maincard:hover .maincardimg {
+      transition: all 0.5s;
+      transform: translateZ(20px);
+    }
+
+    @keyframes wave {
+      from {
+        transform: translateY(0);
+        color: white;
       }
 
-      #top-scroll {
-        display: none;
-        position: fixed;
-        bottom: 10px;
-        right: 15px;
-        z-index: 99;
-        cursor: pointer;
+      to {
+        transform: translateY(-90px);
       }
+    }
 
-      #navbar {
-        z-index: 100;
-        transition: all 0.3s ease;
-      }
+    .loading {
+      margin-top: 10em;
+      text-align: center;
+    }
 
-      #navbar.hide {
-        top: -60px;
-      }
+    .loading span {
+      display: inline-block;
+      font-family: "Fredoka One", sans-serif;
+      font-size: 70px;
+      animation-duration: 0.3s;
+      animation-name: wave;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
 
-      html::-webkit-scrollbar {
-        display: none;
-      }
+    .loading :nth-child(40n + 0) {
+      animation-delay: -0.6s;
+      color: #640a64;
+    }
 
-      .maincard {
-        transform-style: preserve-3d;
-        transform: scale(1);
-      }
+    .loading :nth-child(40n + 1) {
+      animation-delay: -0.585s;
+      color: #780a8c;
+    }
 
-      .maincard:hover .maincardimg {
-        transition: all 0.5s;
-        transform: translateZ(20px);
-      }
+    .loading :nth-child(40n + 2) {
+      animation-delay: -0.57s;
+      color: #8c0a7d;
+    }
 
-      @keyframes wave {
-        from {
-          transform: translateY(0);
-          color: white;
-        }
+    .loading :nth-child(40n + 3) {
+      animation-delay: -0.555s;
+      color: #a00a6e;
+    }
 
-        to {
-          transform: translateY(-90px);
-        }
-      }
+    .loading :nth-child(40n + 4) {
+      animation-delay: -0.54s;
+      color: #b40a96;
+    }
 
-      .loading {
-        margin-top: 10em;
-        text-align: center;
-      }
+    .loading :nth-child(40n + 5) {
+      animation-delay: -0.525s;
+      color: #c80a87;
+    }
 
-      .loading span {
-        display: inline-block;
-        font-family: "Fredoka One", sans-serif;
-        font-size: 70px;
-        animation-duration: 0.3s;
-        animation-name: wave;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-      }
+    .loading :nth-child(40n + 6) {
+      animation-delay: -0.51s;
+      color: #dc0a78;
+    }
 
-      .loading :nth-child(40n + 0) {
-        animation-delay: -0.6s;
-        color: #640a64;
-      }
+    .loading :nth-child(40n + 7) {
+      animation-delay: -0.495s;
+      color: #f00a69;
+    }
 
-      .loading :nth-child(40n + 1) {
-        animation-delay: -0.585s;
-        color: #780a8c;
-      }
+    .loading :nth-child(40n + 8) {
+      animation-delay: -0.48s;
+      color: #690a91;
+    }
 
-      .loading :nth-child(40n + 2) {
-        animation-delay: -0.57s;
-        color: #8c0a7d;
-      }
+    .loading :nth-child(40n + 9) {
+      animation-delay: -0.465s;
+      color: #7d0a82;
+    }
 
-      .loading :nth-child(40n + 3) {
-        animation-delay: -0.555s;
-        color: #a00a6e;
-      }
+    .loading :nth-child(40n + 10) {
+      animation-delay: -0.45s;
+      color: #910a73;
+    }
 
-      .loading :nth-child(40n + 4) {
-        animation-delay: -0.54s;
-        color: #b40a96;
-      }
+    .loading :nth-child(40n + 11) {
+      animation-delay: -0.435s;
+      color: #a50a64;
+    }
 
-      .loading :nth-child(40n + 5) {
-        animation-delay: -0.525s;
-        color: #c80a87;
-      }
+    .loading :nth-child(40n + 12) {
+      animation-delay: -0.42s;
+      color: #b90a8c;
+    }
 
-      .loading :nth-child(40n + 6) {
-        animation-delay: -0.51s;
-        color: #dc0a78;
-      }
+    .loading :nth-child(40n + 13) {
+      animation-delay: -0.405s;
+      color: #cd0a7d;
+    }
 
-      .loading :nth-child(40n + 7) {
-        animation-delay: -0.495s;
-        color: #f00a69;
-      }
+    .loading :nth-child(40n + 14) {
+      animation-delay: -0.39s;
+      color: #e10a6e;
+    }
 
-      .loading :nth-child(40n + 8) {
-        animation-delay: -0.48s;
-        color: #690a91;
-      }
+    .loading :nth-child(40n + 15) {
+      animation-delay: -0.375s;
+      color: #f50a96;
+    }
 
-      .loading :nth-child(40n + 9) {
-        animation-delay: -0.465s;
-        color: #7d0a82;
-      }
+    .loading :nth-child(40n + 16) {
+      animation-delay: -0.36s;
+      color: #6e0a87;
+    }
 
-      .loading :nth-child(40n + 10) {
-        animation-delay: -0.45s;
-        color: #910a73;
-      }
+    .loading :nth-child(40n + 17) {
+      animation-delay: -0.345s;
+      color: #820a78;
+    }
 
-      .loading :nth-child(40n + 11) {
-        animation-delay: -0.435s;
-        color: #a50a64;
-      }
+    .loading :nth-child(40n + 18) {
+      animation-delay: -0.33s;
+      color: #960a69;
+    }
 
-      .loading :nth-child(40n + 12) {
-        animation-delay: -0.42s;
-        color: #b90a8c;
-      }
+    .loading :nth-child(40n + 19) {
+      animation-delay: -0.315s;
+      color: #aa0a91;
+    }
 
-      .loading :nth-child(40n + 13) {
-        animation-delay: -0.405s;
-        color: #cd0a7d;
-      }
+    .loading :nth-child(40n + 20) {
+      animation-delay: -0.3s;
+      color: #be0a82;
+    }
 
-      .loading :nth-child(40n + 14) {
-        animation-delay: -0.39s;
-        color: #e10a6e;
-      }
+    .loading :nth-child(40n + 21) {
+      animation-delay: -0.285s;
+      color: #d20a73;
+    }
 
-      .loading :nth-child(40n + 15) {
-        animation-delay: -0.375s;
-        color: #f50a96;
-      }
+    .loading :nth-child(40n + 22) {
+      animation-delay: -0.27s;
+      color: #e60a64;
+    }
 
-      .loading :nth-child(40n + 16) {
-        animation-delay: -0.36s;
-        color: #6e0a87;
-      }
+    .loading :nth-child(40n + 23) {
+      animation-delay: -0.255s;
+      color: #fa0a8c;
+    }
 
-      .loading :nth-child(40n + 17) {
-        animation-delay: -0.345s;
-        color: #820a78;
-      }
+    .loading :nth-child(40n + 24) {
+      animation-delay: -0.24s;
+      color: #730a7d;
+    }
 
-      .loading :nth-child(40n + 18) {
-        animation-delay: -0.33s;
-        color: #960a69;
-      }
+    .loading :nth-child(40n + 25) {
+      animation-delay: -0.225s;
+      color: #870a6e;
+    }
 
-      .loading :nth-child(40n + 19) {
-        animation-delay: -0.315s;
-        color: #aa0a91;
-      }
+    .loading :nth-child(40n + 26) {
+      animation-delay: -0.21s;
+      color: #9b0a96;
+    }
 
-      .loading :nth-child(40n + 20) {
-        animation-delay: -0.3s;
-        color: #be0a82;
-      }
+    .loading :nth-child(40n + 27) {
+      animation-delay: -0.195s;
+      color: #af0a87;
+    }
 
-      .loading :nth-child(40n + 21) {
-        animation-delay: -0.285s;
-        color: #d20a73;
-      }
+    .loading :nth-child(40n + 28) {
+      animation-delay: -0.18s;
+      color: #c30a78;
+    }
 
-      .loading :nth-child(40n + 22) {
-        animation-delay: -0.27s;
-        color: #e60a64;
-      }
+    .loading :nth-child(40n + 29) {
+      animation-delay: -0.165s;
+      color: #d70a69;
+    }
 
-      .loading :nth-child(40n + 23) {
-        animation-delay: -0.255s;
-        color: #fa0a8c;
-      }
+    .loading :nth-child(40n + 30) {
+      animation-delay: -0.15s;
+      color: #eb0a91;
+    }
 
-      .loading :nth-child(40n + 24) {
-        animation-delay: -0.24s;
-        color: #730a7d;
-      }
+    .loading :nth-child(40n + 31) {
+      animation-delay: -0.135s;
+      color: #640a82;
+    }
 
-      .loading :nth-child(40n + 25) {
-        animation-delay: -0.225s;
-        color: #870a6e;
-      }
+    .loading :nth-child(40n + 32) {
+      animation-delay: -0.12s;
+      color: #780a73;
+    }
 
-      .loading :nth-child(40n + 26) {
-        animation-delay: -0.21s;
-        color: #9b0a96;
-      }
+    .loading :nth-child(40n + 33) {
+      animation-delay: -0.105s;
+      color: #8c0a64;
+    }
 
-      .loading :nth-child(40n + 27) {
-        animation-delay: -0.195s;
-        color: #af0a87;
-      }
+    .loading :nth-child(40n + 34) {
+      animation-delay: -0.09s;
+      color: #a00a8c;
+    }
 
-      .loading :nth-child(40n + 28) {
-        animation-delay: -0.18s;
-        color: #c30a78;
-      }
+    .loading :nth-child(40n + 35) {
+      animation-delay: -0.075s;
+      color: #b40a7d;
+    }
 
-      .loading :nth-child(40n + 29) {
-        animation-delay: -0.165s;
-        color: #d70a69;
-      }
+    .loading :nth-child(40n + 36) {
+      animation-delay: -0.06s;
+      color: #c80a6e;
+    }
 
-      .loading :nth-child(40n + 30) {
-        animation-delay: -0.15s;
-        color: #eb0a91;
-      }
+    .loading :nth-child(40n + 37) {
+      animation-delay: -0.045s;
+      color: #dc0a96;
+    }
 
-      .loading :nth-child(40n + 31) {
-        animation-delay: -0.135s;
-        color: #640a82;
-      }
+    .loading :nth-child(40n + 38) {
+      animation-delay: -0.03s;
+      color: #f00a87;
+    }
 
-      .loading :nth-child(40n + 32) {
-        animation-delay: -0.12s;
-        color: #780a73;
-      }
+    .wavetext :nth-child(40n + 39) {
+      animation-delay: -0.015s;
+      color: #690a78;
+    }
+  </style>
+</head>
 
-      .loading :nth-child(40n + 33) {
-        animation-delay: -0.105s;
-        color: #8c0a64;
-      }
-
-      .loading :nth-child(40n + 34) {
-        animation-delay: -0.09s;
-        color: #a00a8c;
-      }
-
-      .loading :nth-child(40n + 35) {
-        animation-delay: -0.075s;
-        color: #b40a7d;
-      }
-
-      .loading :nth-child(40n + 36) {
-        animation-delay: -0.06s;
-        color: #c80a6e;
-      }
-
-      .loading :nth-child(40n + 37) {
-        animation-delay: -0.045s;
-        color: #dc0a96;
-      }
-
-      .loading :nth-child(40n + 38) {
-        animation-delay: -0.03s;
-        color: #f00a87;
-      }
-
-      .wavetext :nth-child(40n + 39) {
-        animation-delay: -0.015s;
-        color: #690a78;
-      }
-    </style>
-  </head>
-
-  <body id="top">
-    <!-- Nav start -->
-    <div class="fixed w-full top-4" id="navbar">
-      <nav
-        class="w-11/12 mx-auto bg-[#F4F4F4] shadow-md rouned top-4 rounded-md px-4 z-30 dark:bg-[#353750] py-2 lg:py-0"
-      >
-        <div
-          class="container flex flex-wrap justify-between items-center mx-auto"
-        >
-          <a href="./index.html" class="flex items-center"
-            ><img
-              src="./images/favicon.png"
-              alt="error"
-              width="30"
-              height="30"
-            />
-            <span
-              class="self-center text-xl font-semibold whitespace-nowrap text-[#928FA4] dark:text-white px-4"
-              >Karan Kumar</span
-            >
-          </a>
-          <button
-            data-collapse-toggle="navbar-default"
-            type="button"
-            class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden dark:text-gray-100"
-            aria-controls="navbar-default"
-            aria-expanded="false"
-            id="mmbtn"
-          >
-            <svg
-              class="w-6 h-6"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0
-							20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0
+<body id="top">
+  <!-- Nav start -->
+  <div class="fixed w-full top-4" id="navbar">
+    <nav
+      class="w-11/12 mx-auto bg-[#F4F4F4] shadow-md rouned top-4 rounded-md px-4 z-30 dark:bg-[#353750] py-2 lg:py-0">
+      <div class="container flex flex-wrap justify-between items-center mx-auto">
+        <a href="./index.html" class="flex items-center"><img src="./images/favicon.png" alt="error" width="30"
+            height="30" />
+          <span class="self-center text-xl font-semibold whitespace-nowrap text-[#928FA4] dark:text-white px-4">Karan
+            Kumar</span>
+        </a>
+        <button data-collapse-toggle="navbar-default" type="button"
+          class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden dark:text-gray-100"
+          aria-controls="navbar-default" aria-expanded="false" id="mmbtn">
+          <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0
+							20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0
 								01-1-1zM3 10a1 1 0 011-1h12a1
 								1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0
-								01-1-1z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </button>
-          <div class="hidden w-full lg:block lg:w-auto" id="navbar-default">
-            <ul
-              class="flex flex-col p-4 mt-4 rounded-lg border lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium lg:border-0"
-            >
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-500 lg:p-0 dark:text-gray-200 group"
-                  id="home1"
-                >
-                  <i class="fa-solid fa-home"></i> Home
-                  <span
-                    class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-blue-500"
-                  ></span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-rose-500 lg:p-0 dark:text-gray-200 group"
-                  id="about1"
-                  ><i class="fa-sharp fa-solid fa-circle-info"></i> About
-                  <span
-                    class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-rose-500"
-                  ></span
-                ></a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-violet-500 lg:p-0 dark:text-gray-200 group"
-                  id="works1"
-                  ><i class="fa-solid fa-clipboard"></i> Works
-                  <span
-                    class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-violet-500"
-                  ></span
-                ></a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-cyan-500 lg:p-0 dark:text-gray-200 group"
-                  id="tools1"
-                  ><i class="fa-solid fa-bolt"></i> Tools
-                  <span
-                    class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-cyan-500"
-                  ></span
-                ></a>
-              </li>
+								01-1-1z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <div class="hidden w-full lg:block lg:w-auto" id="navbar-default">
+          <ul
+            class="flex flex-col p-4 mt-4 rounded-lg border lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium lg:border-0">
+            <li>
+              <a href="#"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-500 lg:p-0 dark:text-gray-200 group"
+                id="home1">
+                <i class="fa-solid fa-home"></i> Home
+                <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-blue-500"></span>
+              </a>
+            </li>
+            <li>
+              <a href="#"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-rose-500 lg:p-0 dark:text-gray-200 group"
+                id="about1"><i class="fa-sharp fa-solid fa-circle-info"></i> About
+                <span
+                  class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-rose-500"></span></a>
+            </li>
+            <li>
+              <a href="#"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-violet-500 lg:p-0 dark:text-gray-200 group"
+                id="works1"><i class="fa-solid fa-clipboard"></i> Works
+                <span
+                  class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-violet-500"></span></a>
+            </li>
+            <li>
+              <a href="#"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-cyan-500 lg:p-0 dark:text-gray-200 group"
+                id="tools1"><i class="fa-solid fa-bolt"></i> Tools
+                <span
+                  class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-cyan-500"></span></a>
+            </li>
 
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-pink-500 lg:p-0 dark:text-gray-200 group"
-                  id="contact1"
-                  ><i class="fa-solid fa-handshake"></i> Contact
-                  <span
-                    class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-pink-500"
-                  ></span
-                ></a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  id="thembtn"
-                  class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-green-500 md:p-0 dark:text-gray-200 group"
-                  ><i class="fa-sharp fa-solid fa-gear"></i> Settings
-                  <span
-                    class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-green-500"
-                  ></span
-                ></a>
-              </li>
-            </ul>
-          </div>
+            <li>
+              <a href="#"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-pink-500 lg:p-0 dark:text-gray-200 group"
+                id="contact1"><i class="fa-solid fa-handshake"></i> Contact
+                <span
+                  class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-pink-500"></span></a>
+            </li>
+            <li>
+              <a href="#" id="thembtn"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-green-500 md:p-0 dark:text-gray-200 group"><i
+                  class="fa-sharp fa-solid fa-gear"></i> Settings
+                <span
+                  class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-green-500"></span></a>
+            </li>
+          </ul>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
+  </div>
 
-    <!-- Nav end -->
+  <!-- Nav end -->
 
-    <!-- Home Start -->
-    <main class="bg-white dark:bg-[#2F2F47]" id="page1">
-      <section class="h-screen relative">
-        <div class="absolute h-full w-full grid place-items-center">
-          <div class="m-10 mt-20">
-            <h3
-              class="text-2xl font-bold text-[#928FA4] dark:text-gray-200"
-              id="hh1"
-            >
-              Karan Kumar
-            </h3>
-            <h3
-              class="text-xl font-normal text-[#A7A5B5] dark:text-gray-300 sm:text-3xl"
-              id="hh2"
-            >
-              Also known as
-              <span class="font-semibold text-[#48406A] dark:text-gray-50"
-                >@Analog-Sombra</span
-              >
-            </h3>
-            <h3
-              class="text-3xl font-bold text-[#48406A] dark:text-white sm:text-4xl"
-              id="hh3"
-            >
-              An anti social person with a good humour
-            </h3>
-            <div
-              class="grid place-items-center grid-cols-2 sm:grid-cols-4 mt-6"
-              id="hh4"
-            >
-              <a
-                href="https://www.youtube.com/channel/UCjv5QR-d8m3C9PlWCTIuRYA"
-                class="mt-6 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-md text-sm px-5 py-2.5 text-center mx-2 group"
-                id="ybtn"
-                ><i class="fa-brands fa-youtube" aria-hidden="true"></i> Youtube
-                <i
-                  class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right ransition-all duration-500"
-                ></i
-              ></a>
+  <!-- Home Start -->
+  <main class="bg-white dark:bg-[#2F2F47]" id="page1">
+    <section class="h-screen relative">
+      <div class="absolute h-full w-full grid place-items-center">
+        <div class="m-10 mt-20">
+          <h3 class="text-2xl font-bold text-[#928FA4] dark:text-gray-200" id="hh1">
+            Karan Kumar
+          </h3>
+          <h3 class="text-xl font-normal text-[#A7A5B5] dark:text-gray-300 sm:text-3xl" id="hh2">
+            Also known as
+            <span class="font-semibold text-[#48406A] dark:text-gray-50">@Analog-Sombra</span>
+          </h3>
+          <h3 class="text-3xl font-bold text-[#48406A] dark:text-white sm:text-4xl" id="hh3">
+            An anti social person with a good humour
+          </h3>
+          <div class="grid place-items-center grid-cols-2 sm:grid-cols-4 mt-6" id="hh4">
+            <a href="https://www.youtube.com/channel/UCjv5QR-d8m3C9PlWCTIuRYA"
+              class="mt-6 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-md text-sm px-5 py-2.5 text-center mx-2 group"
+              id="ybtn"><i class="fa-brands fa-youtube" aria-hidden="true"></i> Youtube
+              <i class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right ransition-all duration-500"></i></a>
 
-              <a
-                href="https://github.com/analog-sombra"
-                class="mt-6 text-white bg-gradient-to-r from-slate-400 via-slate-500 to-slate-600 hover:bg-gradient-to-br shadow-lg shadow-slate-500/50 dark:shadow-lg dark:shadow-slate-800/80 font-medium rounded-md text-sm px-5 py-2.5 text-center mx-2 group"
-                id="gbtn"
-                ><i class="fa fa-github" aria-hidden="true"></i> Github
-                <i
-                  class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right"
-                ></i
-              ></a>
-              <a
-                href="https://www.linkedin.com/in/sombra"
-                class="mt-6 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-md text-sm px-5 py-2.5 text-center mx-2 group"
-                id="lbtn"
-                ><i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn
-                <i
-                  class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right"
-                ></i
-              ></a>
-              <a
-                href="https://discord.gg/N6C4UQNuhb"
-                class="mt-6 text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-md text-sm px-5 py-2.5 text-center mx-2 group"
-                id="dbtn"
-                ><i class="fa-brands fa-discord" aria-hidden="true"></i> Discord
-                <i
-                  class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right"
-                ></i
-              ></a>
-            </div>
-            <h4
-            class="mt-12 text-center font-bold text-2xl sm:text-4xl text-[#48406A] dark:text-gray-300"
-            id="introheadtext"
-          >
+            <a href="https://github.com/analog-sombra"
+              class="mt-6 text-white bg-gradient-to-r from-slate-400 via-slate-500 to-slate-600 hover:bg-gradient-to-br shadow-lg shadow-slate-500/50 dark:shadow-lg dark:shadow-slate-800/80 font-medium rounded-md text-sm px-5 py-2.5 text-center mx-2 group"
+              id="gbtn"><i class="fa fa-github" aria-hidden="true"></i> Github
+              <i class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right"></i></a>
+            <a href="https://www.linkedin.com/in/sombra"
+              class="mt-6 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-md text-sm px-5 py-2.5 text-center mx-2 group"
+              id="lbtn"><i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn
+              <i class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right"></i></a>
+            <a href="https://discord.gg/N6C4UQNuhb"
+              class="mt-6 text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-md text-sm px-5 py-2.5 text-center mx-2 group"
+              id="dbtn"><i class="fa-brands fa-discord" aria-hidden="true"></i> Discord
+              <i class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right"></i></a>
+          </div>
+          <h4 class="mt-12 text-center font-bold text-2xl sm:text-4xl text-[#48406A] dark:text-gray-300"
+            id="introheadtext">
             I am a developer
           </h4>
-          </div>
-        </div>
-     -->
-      </section>
-      <div class="h-screen grid place-items-center">
-        <h2
-          class="text-2xl px-4 font-black text-[#48406A] text-center mx-auto w-11/12 sm:px-10 sm:text-4xl dark:text-gray-200"
-        >
-          yesterday i was clever so i wanted to change the world. Today I'm wise
-          so i am changing myself.
-        </h2>
-      </div>
-    </main>
-    <!-- Home end -->
-
-    <!-- about start here -->
-    <main
-      class="w-full place-items-center hidden bg-white dark:bg-[#2F2F47]"
-      id="page2"
-    >
-      <div class="w-full h-screen grid place-content-center">
-        <div>
-          <p
-            class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white"
-            id="ah1"
-          >
-            About
-          </p>
-          <p
-            class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white"
-            id="ah2"
-          >
-            Coming soon!
-          </p>
         </div>
       </div>
-    </main>
-    <!-- about end here -->
-    <!-- works start here -->
-    <main
-      class="w-full place-items-center hidden bg-white dark:bg-[#2F2F47]"
-      id="page3"
-    >
-      <div class="w-full h-screen grid place-content-center">
-        <div>
-          <p
-            class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white"
-            id="wh1"
-          >
-            Works
-          </p>
-          <p
-            class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white"
-            id="wh2"
-          >
-            Coming soon!
-          </p>
-        </div>
-      </div>
-    </main>
-    <!-- works end here -->
-    <!-- tools start here -->
-    <main class="w-full bg-white dark:bg-[#2F2F47] hidden absolute" id="page4">
-      <div class="container mt-28 dark:text-gray-200 text-slate-800 px-6 sm:px-1">
-        <h4 class="text-3xl text-center font-medium">
-          <i class="fa-solid fa-heart text-rose-500"></i> Favorites Text editor
-          and IDE
-        </h4>
-        <div
-          class="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-10"
-        >
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img
-                src="./images/vscode.png"
-                alt="error"
-                class="w-full h-auto"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
 
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              VS Code
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/vim.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              VIM
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img
-                src="./images/visual_studio.png"
-                alt="error"
-                class="w-full h-auto"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Visual Studio
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img
-                src="./images/android.png"
-                alt="error"
-                class="w-full h-auto"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Android Studio
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img
-                src="./images/jupyter.png"
-                alt="error"
-                class="w-full h-full"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Jupyter Lab
-            </div>
-          </div>
-        </div>
-
-        <h4 class="text-3xl text-center font-medium mt-12">
-          <i class="fa-solid fa-terminal text-cyan-500"></i> Favorites
-          Programming Languages
-        </h4>
-
-        <div
-          class="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-10"
-        >
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/c.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              C
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/dart.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Dart
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/rust.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Rust
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/lua.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Lua
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img
-                src="./images/typescript.png"
-                alt="error"
-                class="w-full h-full"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Typescript
-            </div>
-          </div>
-        </div>
-
-        <h4 class="text-3xl text-center font-medium mt-12">
-          <i class="fa-solid fa-heart-crack text-red-500"></i> Least Favorites
-          Programming Languages
-        </h4>
-
-        <div
-          class="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-10"
-        >
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/php.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              PHP
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/cpp.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              C++
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/Java.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Java
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/cs.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              C#
-            </div>
-          </div>
-        </div>
-
-        <h4 class="text-3xl text-center font-medium mt-12">
-          <i class="fa-solid fa-database text-green-500"></i> Databases i use
-        </h4>
-
-        <div
-          class="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-10"
-        >
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/mongo.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              MongoDB
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/pgsql.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              PostGresSQL
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/mysql.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              MySQL
-            </div>
-          </div>
-        </div>
-
-        <h4 class="text-3xl text-center font-medium mt-12">
-          <i class="fa-solid fa-star text-yellow-500"></i> Currenly Using
-          Programming Languages
-        </h4>
-
-        <div
-          class="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-10"
-        >
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/c.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              C
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/dart.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Dart
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/php.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              PHP
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/rust.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Rust
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img
-                src="./images/typescript.png"
-                alt="error"
-                class="w-full h-auto"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Typescript
-            </div>
-          </div>
-        </div>
-        <h4 class="text-3xl text-center font-medium mt-12">
-          <i class="fa-solid fa-heart text-red-500"></i>
-          Programming Languages i worked on
-        </h4>
-
-        <div
-          class="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-10"
-        >
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/html.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              HTML
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/css.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              CSS
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img
-                src="./images/javascript.png"
-                alt="error"
-                class="w-full h-auto"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Javascript
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img
-                src="./images/typescript.png"
-                alt="error"
-                class="w-full h-auto"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Typescript
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/c.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              C
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/cpp.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              C++
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/Java.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Java
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img
-                src="./images/kotlin.png"
-                alt="error"
-                class="w-full h-auto"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Kotlin
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/cs.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              C#
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/lua.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              LUA
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/rust.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Rust
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/go.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Go
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img
-                src="./images/python.png"
-                alt="error"
-                class="w-full h-auto"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              python
-            </div>
-          </div>
-
-     
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/scala.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Scaka
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/swift.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Swift
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img
-                src="./images/solidity.png"
-                alt="error"
-                class="w-full h-auto"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Solidity
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/zig.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Zig
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img src="./images/v.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              V
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition"
-            >
-              <img
-                src="./images/elixir.png"
-                alt="error"
-                class="w-full h-auto"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Elixir
-            </div>
-          </div>
-
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/r.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              R
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/julia.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Julia
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img src="./images/dart.png" alt="error" class="w-full h-auto" />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Dart
-            </div>
-          </div>
-          <div
-            class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
-            data-tilt=""
-          >
-            <div
-              class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg"
-            >
-              <img
-                src="./images/php.png"
-                alt="error"
-                class="w-full h-auto"
-              />
-            </div>
-            <div class="w-11/12 h-1 mx-auto mt-2"></div>
-
-            <div
-              class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg"
-            >
-              Php
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- contact start here  -->
-    <main class="w-full bg-white dark:bg-[#2F2F47] hidden" id="page5">
-      <div class="w-full h-screen grid place-items-center">
-        <div>
-          <p
-            class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white"
-            id="ch1"
-          >
-            Let's make
-          </p>
-          <p
-            class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white"
-            id="ch2"
-          >
-            Something great together!
-          </p>
-        </div>
-      </div>
-      <div class="container px-4 pb-20">
-        <h4
-          class="text-left text-3xl font-semibold text-[#48406A] dark:text-white"
-        >
-          Contact
-        </h4>
-        <p
-          class="text-left text-lg text-gray-800 dark:text-gray-300 font-semibold mt-6"
-        >
-          I'm finding some opportunities to collaborate with other developer,
-          not just work for them, But also i want to bring my collective
-          experience to the table where we can work together to solve real
-          life-problems in a way that optimizes all of our respective experience
-          and knowledge.
-        </p>
-        <p
-          class="text-left text-xl font-medium text-gray-800 dark:text-gray-300 mt-12"
-        >
-          If you want to go fast, go alone. If you want to go far, go together.
-        </p>
-        <p
-          class="text-left text-lg text-gray-800 dark:text-gray-300 mt-12 font-medium"
-        >
-          Feel free to reach out through any platforms below:
-        </p>
-        <p
-          class="text-left text-xl font-bold dark:text-gray-200 text-slate-900 hover:translate-x-7 transition group mt-2"
-        >
-          <a href="https://www.linkedin.com/in/sombra" class="group-hover:text-blue-500"
-            >LinkedIn
-            <i
-              class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right ransition-all duration-500"
-            ></i
-          ></a>
-        </p>
-        <p
-          class="text-left text-xl font-bold dark:text-gray-200 text-slate-900 hover:translate-x-7 transition group mt-2"
-        >
-          <a
-            href="https://github.com/analog-sombra"
-            class="group-hover:text-green-500"
-            >Github
-            <i
-              class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right ransition-all duration-500"
-            ></i
-          ></a>
-        </p>
-        <p
-          class="text-left text-xl font-bold dark:text-gray-200 text-slate-900 hover:translate-x-7 transition group mt-2"
-        >
-          <a href="https://www.sololearn.com/Profile/25140271/?ref=app" class="group-hover:text-yellow-500"
-            >Sololearn
-            <i
-              class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right ransition-all duration-500"
-            ></i
-          ></a>
-        </p>
-
-        <p
-          class="text-left text-xl font-bold dark:text-gray-200 text-slate-900 hover:translate-x-7 transition group mt-2"
-        >
-          <a href="#" class="group-hover:text-red-500"
-            >analogsombra@gmail.com
-            <i
-              class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right ransition-all duration-500"
-            ></i
-          ></a>
-        </p>
-      </div>
-    </main>
-
-    <!-- contact end here  -->
-
-    <!-- mobile menu start -->
-    <div
-      class="h-screen w-full bg-white fixed top-0 left-0 z-[120] place-items-center hidden lg:hidden dark:bg-[#2F2F47]"
-      id="mm"
-    >
-      <div
-        style="
-          position: absolute;
-          top: 20px;
-          right: 30px;
-          cursor: pointer;
-          font-size: x-large;
-        "
-        id="cmmbtn"
-        class="text-slate-900 dark:text-gray-200"
-      >
-        <i class="fa-solid fa-xmark" id="close"></i>
-      </div>
-
-      <div>
-        <div class="grid place-items-center">
-          <img
-            src="./images/favicon.png"
-            alt="error"
-            width="100"
-            height="100"
-            class="inline-block text-center"
-          />
-        </div>
-        <h3 class="text-4xl font-bold text-center dark:text-gray-100">
-          Karan Kumar
-        </h3>
-        <p class="text-2xl font-normal text-center dark:text-gray-300">
-          @Analog Sombra
-        </p>
-        <ul class="flex flex-col p-4 mt-4">
-          <li>
-            <a
-              href="#"
-              class="block py-2 pr-4 pl-3 text-gray-700 rounded dark:text-gray-100 group text-center text-xl font-medium"
-              id="home2"
-              ><i class="fa-solid fa-home"></i> Home
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block py-2 pr-4 pl-3 text-gray-700 rounded dark:text-gray-100 group text-center text-xl font-medium"
-              id="about2"
-              ><i class="fa-sharp fa-solid fa-circle-info"></i> About</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block py-2 pr-4 pl-3 text-gray-700 rounded dark:text-gray-100 group text-center text-xl font-medium"
-              id="works2"
-              ><i class="fa-solid fa-clipboard"></i> Works</a
-            >
-          </li>
-
-          <li>
-            <a
-              href="#"
-              class="block py-2 pr-4 pl-3 text-gray-700 rounded dark:text-gray-100 group text-center text-xl font-medium"
-              id="tools2"
-              ><i class="fa-solid fa-bolt"></i> Tools</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block py-2 pr-4 pl-3 text-gray-700 rounded dark:text-gray-100 group text-center text-xl font-medium"
-              id="contact2"
-              ><i class="fa-solid fa-handshake"></i> Contact</a
-            >
-          </li>
-        </ul>
-        <h3
-          class="text-center text-xl text-[#48406A] font-medium mt-10 dark:text-gray-300"
-        >
-          Theme settings
-        </h3>
-        <div
-          class="grid place-items-center grid-cols-3 rounded-md font-medium text-center text-lg mt-4 bg-[#E7E6EB] p-1 text-[#48406A] cursor-pointer dark:bg-[#4E4F6B] dark:text-gray-300 shadow-md"
-        >
-          <div
-            class="bg-white rounded-md py-1 px-6 transition-all duration-500"
-            id="auto1"
-          >
-            <i class="fa-solid fa-server"></i> Auto
-          </div>
-          <div
-            class="rounded-md py-1 px-6 transition-all duration-500"
-            id="dark1"
-          >
-            <i class="fa-solid fa-moon"></i> Dark
-          </div>
-          <div
-            class="rounded-md py-1 px-6 transition-all duration-500"
-            id="light1"
-          >
-            <i class="fa-solid fa-sun"></i> Light
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- mobile menu end -->
-    <!-- settings page start -->
-
-    <div
-      class="h-screen w-full bg-white fixed top-0 left-0 z-[120] place-items-center hidden dark:bg-[#2F2F47]"
-      id="themm"
-    >
-      <div
-        style="
-          position: absolute;
-          top: 20px;
-          right: 30px;
-          cursor: pointer;
-          font-size: x-large;
-        "
-        id="cthem"
-        class="text-slate-900 dark:text-gray-200"
-      >
-        <i class="fa-solid fa-xmark" id="close"></i>
-      </div>
-
-      <div>
-        <div class="grid place-items-center">
-          <img
-            src="./images/favicon.png"
-            alt="error"
-            width="100"
-            height="100"
-            class="inline-block text-center"
-          />
-        </div>
-        <h3 class="text-4xl font-bold text-center dark:text-gray-100">
-          Karan Kumar
-        </h3>
-        <p class="text-2xl font-normal text-center dark:text-gray-300">
-          @Analog Sombra
-        </p>
-        <h3
-          class="text-center text-xl text-[#48406A] font-medium mt-10 dark:text-gray-300"
-        >
-          Theme settings
-        </h3>
-        <div
-          class="grid place-items-center grid-cols-3 rounded-md font-medium text-center text-lg mt-4 bg-[#E7E6EB] p-1 text-[#48406A] cursor-pointer dark:bg-[#4E4F6B] dark:text-gray-100 shadow-md"
-        >
-          <div
-            class="bg-white dark:bg-[#32344D] rounded-md py-1 px-6 transition-all duration-500"
-            id="auto2"
-          >
-            <i class="fa-solid fa-server"></i> Auto
-          </div>
-          <div
-            class="rounded-md py-1 px-6 transition-all duration-500"
-            id="dark2"
-          >
-            <i class="fa-solid fa-moon"></i> Dark
-          </div>
-          <div
-            class="rounded-md py-1 px-6 transition-all duration-500"
-            id="light2"
-          >
-            <i class="fa-solid fa-sun"></i> Light
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- settings page end -->
-    <!-- slider start -->
-    <section
-      id="slider"
-      class="bg-cyan-500 fixed top-0 left-0 h-screen w-screen place-items-center grid translate-x-[100%]"
-      style="z-index: 999"
-    >
-      <h2 class="text-center font-bold text-4xl text-white" id="slidertext">
-        Slider text
-      </h2>
     </section>
-    <!-- slider end -->
-
-    <!-- scroll to top button start  -->
-    <a
-      href="#top"
-      id="top-scroll"
-      class="block text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center fixed right-2 bottom-2"
-      ><i class="fa-solid fa-arrow-up-long"></i
-    ></a>
-    <!-- scroll to top button end -->
-
-    <!-- loader start here -->
-    <div
-      id="load"
-      class="w-full h-screen bg-black fixed top-0 left-0 grid place-items-center"
-      style="z-index: 9909999"
-    >
-      <div class="loading"></div>
+    <div class="h-screen grid place-items-center">
+      <h2
+        class="text-2xl px-4 font-black text-[#48406A] text-center mx-auto w-11/12 sm:px-10 sm:text-4xl dark:text-gray-200">
+        yesterday i was clever so i wanted to change the world. Today I'm wise
+        so i am changing myself.
+      </h2>
     </div>
-    <!-- loader start end -->
+  </main>
+  <!-- Home end -->
 
-    <script src="./js/gsap.min.js"></script>
-    <script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.min.js"
-      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://unpkg.com/tilt.js@1.2.1/dest/tilt.jquery.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
-      integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="./js/app.js"></script>
-  </body>
+  <!-- about start here -->
+  <main class="w-full place-items-center hidden bg-white dark:bg-[#2F2F47]" id="page2">
+    <div class="w-full h-screen grid place-content-center">
+      <div>
+        <p class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white" id="ah1">
+          About
+        </p>
+        <p class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white" id="ah2">
+          Coming soon!
+        </p>
+      </div>
+    </div>
+  </main>
+  <!-- about end here -->
+  <!-- works start here -->
+  <main class="w-full place-items-center hidden bg-white dark:bg-[#2F2F47]" id="page3">
+    <div class="w-full h-screen grid place-content-center">
+      <div>
+        <p class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white" id="wh1">
+          Works
+        </p>
+        <p class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white" id="wh2">
+          Coming soon!
+        </p>
+      </div>
+    </div>
+  </main>
+  <!-- works end here -->
+  <!-- tools start here -->
+  <main class="w-full bg-white dark:bg-[#2F2F47] hidden absolute" id="page4">
+    <div class="container mt-28 dark:text-gray-200 text-slate-800 px-6 sm:px-1">
+      <h4 class="text-3xl text-center font-medium">
+        <i class="fa-solid fa-heart text-rose-500"></i> Favorites Text editor
+        and IDE
+      </h4>
+      <div class="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-10">
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/vscode.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            VS Code
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/vim.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            VIM
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/visual_studio.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Visual Studio
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/android.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Android Studio
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/jupyter.png" alt="error" class="w-full h-full" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Jupyter Lab
+          </div>
+        </div>
+      </div>
+
+      <h4 class="text-3xl text-center font-medium mt-12">
+        <i class="fa-solid fa-terminal text-cyan-500"></i> Favorites
+        Programming Languages
+      </h4>
+
+      <div class="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-10">
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/c.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            C
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/dart.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Dart
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/rust.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Rust
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/lua.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Lua
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/typescript.png" alt="error" class="w-full h-full" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Typescript
+          </div>
+        </div>
+      </div>
+
+      <h4 class="text-3xl text-center font-medium mt-12">
+        <i class="fa-solid fa-heart-crack text-red-500"></i> Least Favorites
+        Programming Languages
+      </h4>
+
+      <div class="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-10">
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/php.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            PHP
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/cpp.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            C++
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/Java.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Java
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/cs.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            C#
+          </div>
+        </div>
+      </div>
+
+      <h4 class="text-3xl text-center font-medium mt-12">
+        <i class="fa-solid fa-database text-green-500"></i> Databases i use
+      </h4>
+
+      <div class="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-10">
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/mongo.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            MongoDB
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/pgsql.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            PostGresSQL
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/mysql.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            MySQL
+          </div>
+        </div>
+      </div>
+
+      <h4 class="text-3xl text-center font-medium mt-12">
+        <i class="fa-solid fa-star text-yellow-500"></i> Currenly Using
+        Programming Languages
+      </h4>
+
+      <div class="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-10">
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/c.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            C
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/dart.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Dart
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/php.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            PHP
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/rust.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Rust
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/typescript.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Typescript
+          </div>
+        </div>
+      </div>
+      <h4 class="text-3xl text-center font-medium mt-12">
+        <i class="fa-solid fa-heart text-red-500"></i>
+        Programming Languages i worked on
+      </h4>
+
+      <div class="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-10">
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/html.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            HTML
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/css.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            CSS
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/javascript.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Javascript
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/typescript.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Typescript
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/c.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            C
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/cpp.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            C++
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/Java.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Java
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/kotlin.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Kotlin
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/cs.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            C#
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/lua.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            LUA
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/rust.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Rust
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/go.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Go
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/python.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            python
+          </div>
+        </div>
+
+
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/scala.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Scaka
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/swift.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Swift
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/solidity.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Solidity
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/zig.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Zig
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/v.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            V
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div
+            class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg transition">
+            <img src="./images/elixir.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Elixir
+          </div>
+        </div>
+
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/r.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            R
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard hover:bg-gradient-to-br shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/julia.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Julia
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/dart.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Dart
+          </div>
+        </div>
+        <div
+          class="w-44 bg-white dark:bg-[#353750] shadow-md rounded-md m-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-3 maincard"
+          data-tilt="">
+          <div class="w-36 h-36 mx-auto grid place-items-center bg-white rounded-md p-3 overflow-hidden maincardimg">
+            <img src="./images/php.png" alt="error" class="w-full h-auto" />
+          </div>
+          <div class="w-11/12 h-1 mx-auto mt-2"></div>
+
+          <div class="w-full bg-white text-center text-slate-800 text-xl rounded-md font-medium maincardimg">
+            Php
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- contact start here  -->
+  <main class="w-full bg-white dark:bg-[#2F2F47] hidden" id="page5">
+    <div class="w-full h-screen grid place-items-center">
+      <div>
+        <p class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white" id="ch1">
+          Let's make
+        </p>
+        <p class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white" id="ch2">
+          Something great together!
+        </p>
+      </div>
+    </div>
+    <div class="container px-4 pb-20">
+      <h4 class="text-left text-3xl font-semibold text-[#48406A] dark:text-white">
+        Contact
+      </h4>
+      <p class="text-left text-lg text-gray-800 dark:text-gray-300 font-semibold mt-6">
+        I'm finding some opportunities to collaborate with other developer,
+        not just work for them, But also i want to bring my collective
+        experience to the table where we can work together to solve real
+        life-problems in a way that optimizes all of our respective experience
+        and knowledge.
+      </p>
+      <p class="text-left text-xl font-medium text-gray-800 dark:text-gray-300 mt-12">
+        If you want to go fast, go alone. If you want to go far, go together.
+      </p>
+      <p class="text-left text-lg text-gray-800 dark:text-gray-300 mt-12 font-medium">
+        Feel free to reach out through any platforms below:
+      </p>
+      <p
+        class="text-left text-xl font-bold dark:text-gray-200 text-slate-900 hover:translate-x-7 transition group mt-2">
+        <a href="https://www.linkedin.com/in/sombra" class="group-hover:text-blue-500">LinkedIn
+          <i class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right ransition-all duration-500"></i></a>
+      </p>
+      <p
+        class="text-left text-xl font-bold dark:text-gray-200 text-slate-900 hover:translate-x-7 transition group mt-2">
+        <a href="https://github.com/analog-sombra" class="group-hover:text-green-500">Github
+          <i class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right ransition-all duration-500"></i></a>
+      </p>
+      <p
+        class="text-left text-xl font-bold dark:text-gray-200 text-slate-900 hover:translate-x-7 transition group mt-2">
+        <a href="https://www.sololearn.com/Profile/25140271/?ref=app" class="group-hover:text-yellow-500">Sololearn
+          <i class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right ransition-all duration-500"></i></a>
+      </p>
+
+      <p
+        class="text-left text-xl font-bold dark:text-gray-200 text-slate-900 hover:translate-x-7 transition group mt-2">
+        <a href="#" class="group-hover:text-red-500">analogsombra@gmail.com
+          <i class="opacity-0 group-hover:opacity-100 fa-solid fa-angles-right ransition-all duration-500"></i></a>
+      </p>
+    </div>
+  </main>
+
+  <!-- contact end here  -->
+
+  <!-- mobile menu start -->
+  <div class="h-screen w-full bg-white fixed top-0 left-0 z-[120] place-items-center hidden lg:hidden dark:bg-[#2F2F47]"
+    id="mm">
+    <div style="
+          position: absolute;
+          top: 20px;
+          right: 30px;
+          cursor: pointer;
+          font-size: x-large;
+        " id="cmmbtn" class="text-slate-900 dark:text-gray-200">
+      <i class="fa-solid fa-xmark" id="close"></i>
+    </div>
+
+    <div>
+      <div class="grid place-items-center">
+        <img src="./images/favicon.png" alt="error" width="100" height="100" class="inline-block text-center" />
+      </div>
+      <h3 class="text-4xl font-bold text-center dark:text-gray-100">
+        Karan Kumar
+      </h3>
+      <p class="text-2xl font-normal text-center dark:text-gray-300">
+        @Analog Sombra
+      </p>
+      <ul class="flex flex-col p-4 mt-4">
+        <li>
+          <a href="#"
+            class="block py-2 pr-4 pl-3 text-gray-700 rounded dark:text-gray-100 group text-center text-xl font-medium"
+            id="home2"><i class="fa-solid fa-home"></i> Home
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            class="block py-2 pr-4 pl-3 text-gray-700 rounded dark:text-gray-100 group text-center text-xl font-medium"
+            id="about2"><i class="fa-sharp fa-solid fa-circle-info"></i> About</a>
+        </li>
+        <li>
+          <a href="#"
+            class="block py-2 pr-4 pl-3 text-gray-700 rounded dark:text-gray-100 group text-center text-xl font-medium"
+            id="works2"><i class="fa-solid fa-clipboard"></i> Works</a>
+        </li>
+
+        <li>
+          <a href="#"
+            class="block py-2 pr-4 pl-3 text-gray-700 rounded dark:text-gray-100 group text-center text-xl font-medium"
+            id="tools2"><i class="fa-solid fa-bolt"></i> Tools</a>
+        </li>
+        <li>
+          <a href="#"
+            class="block py-2 pr-4 pl-3 text-gray-700 rounded dark:text-gray-100 group text-center text-xl font-medium"
+            id="contact2"><i class="fa-solid fa-handshake"></i> Contact</a>
+        </li>
+      </ul>
+      <h3 class="text-center text-xl text-[#48406A] font-medium mt-10 dark:text-gray-300">
+        Theme settings
+      </h3>
+      <div
+        class="grid place-items-center grid-cols-3 rounded-md font-medium text-center text-lg mt-4 bg-[#E7E6EB] p-1 text-[#48406A] cursor-pointer dark:bg-[#4E4F6B] dark:text-gray-300 shadow-md">
+        <div class="bg-white rounded-md py-1 px-6 transition-all duration-500" id="auto1">
+          <i class="fa-solid fa-server"></i> Auto
+        </div>
+        <div class="rounded-md py-1 px-6 transition-all duration-500" id="dark1">
+          <i class="fa-solid fa-moon"></i> Dark
+        </div>
+        <div class="rounded-md py-1 px-6 transition-all duration-500" id="light1">
+          <i class="fa-solid fa-sun"></i> Light
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- mobile menu end -->
+  <!-- settings page start -->
+
+  <div class="h-screen w-full bg-white fixed top-0 left-0 z-[120] place-items-center hidden dark:bg-[#2F2F47]"
+    id="themm">
+    <div style="
+          position: absolute;
+          top: 20px;
+          right: 30px;
+          cursor: pointer;
+          font-size: x-large;
+        " id="cthem" class="text-slate-900 dark:text-gray-200">
+      <i class="fa-solid fa-xmark" id="close"></i>
+    </div>
+
+    <div>
+      <div class="grid place-items-center">
+        <img src="./images/favicon.png" alt="error" width="100" height="100" class="inline-block text-center" />
+      </div>
+      <h3 class="text-4xl font-bold text-center dark:text-gray-100">
+        Karan Kumar
+      </h3>
+      <p class="text-2xl font-normal text-center dark:text-gray-300">
+        @Analog Sombra
+      </p>
+      <h3 class="text-center text-xl text-[#48406A] font-medium mt-10 dark:text-gray-300">
+        Theme settings
+      </h3>
+      <div
+        class="grid place-items-center grid-cols-3 rounded-md font-medium text-center text-lg mt-4 bg-[#E7E6EB] p-1 text-[#48406A] cursor-pointer dark:bg-[#4E4F6B] dark:text-gray-100 shadow-md">
+        <div class="bg-white dark:bg-[#32344D] rounded-md py-1 px-6 transition-all duration-500" id="auto2">
+          <i class="fa-solid fa-server"></i> Auto
+        </div>
+        <div class="rounded-md py-1 px-6 transition-all duration-500" id="dark2">
+          <i class="fa-solid fa-moon"></i> Dark
+        </div>
+        <div class="rounded-md py-1 px-6 transition-all duration-500" id="light2">
+          <i class="fa-solid fa-sun"></i> Light
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- settings page end -->
+  <!-- slider start -->
+  <section id="slider"
+    class="bg-cyan-500 fixed top-0 left-0 h-screen w-screen place-items-center grid translate-x-[100%]"
+    style="z-index: 999">
+    <h2 class="text-center font-bold text-4xl text-white" id="slidertext">
+      Slider text
+    </h2>
+  </section>
+  <!-- slider end -->
+
+  <!-- scroll to top button start  -->
+  <a href="#top" id="top-scroll"
+    class="block text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center fixed right-2 bottom-2"><i
+      class="fa-solid fa-arrow-up-long"></i></a>
+  <!-- scroll to top button end -->
+
+  <!-- loader start here -->
+  <div id="load" class="w-full h-screen bg-black fixed top-0 left-0 grid place-items-center" style="z-index: 9909999">
+    <div class="loading"></div>
+  </div>
+  <!-- loader start end -->
+
+  <script src="./js/gsap.min.js"></script>
+  <script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/tilt.js@1.2.1/dest/tilt.jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+    integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./js/app.js"></script>
+</body>
+
 </html>
