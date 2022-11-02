@@ -728,8 +728,9 @@ const homeInit = () => {
 
 const aboutInit = () => {
   gsap.from("#navbar", { opacity: 0, ease: "power4.out", duration: 2 });
-  gsap.from("#ah1", { opacity: 0, y: 200, ease: "power4.out", duration: 1 });
-  gsap.from("#ah2", { opacity: 0, y: 200, ease: "power4.out", duration: 1.4 });
+  gsap.from("#aboutheader", { opacity: 0, y: 200, ease: "power4.out", duration: 1 });
+  gsap.from("#ah1", { opacity: 0, y: 200, ease: "power4.out", duration: 1.8 });
+  gsap.from(".aboutbody", { opacity: 0, y: 200, ease: "power4.out", duration: 2.4 });
 };
 
 const worksInit = () => {

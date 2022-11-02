@@ -48,6 +48,30 @@
       transform: translateZ(20px);
     }
 
+    #aboutbox {
+      background-image: url("./images/bg.png");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transition: all 0.5s;
+    }
+
+    #aboutbody {
+      background-image: url("./images/header.jpg");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transition: all 0.5s;
+    }
+
+    #aboutbox:hover {
+      transform: scale(1.2);
+    }
+
+    .aboutbody:hover #aboutbody {
+      transform: scale(1.1);
+    }
+
     @keyframes wave {
       from {
         transform: translateY(0);
@@ -406,17 +430,99 @@
   <!-- Home end -->
 
   <!-- about start here -->
-  <main class="w-full place-items-center hidden bg-white dark:bg-[#2F2F47]" id="page2">
-    <div class="w-full h-screen grid place-content-center">
-      <div>
-        <p class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white" id="ah1">
-          About
-        </p>
-        <p class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white" id="ah2">
-          Coming soon!
-        </p>
+  <main class="w-full place-items-center hidden bg-white dark:bg-[#2F2F47] pt-28" id="page2">
+    <div class="w-11/12 h-56 mx-auto overflow-hidden grid place-items-cente" id="aboutheader">
+      <div id="aboutbox" class="w-full h-full grid place-items-center">
       </div>
     </div>
+
+    <div class="overflow-hidden p-4" id="ah1">
+      <p class="text-center text-3xl sm:text-5xl font-semibold text-[#48406A] dark:text-white my-2">
+        About Me
+      </p>
+      <div class="w-full grid place-items-center">
+        <div class="w-20 h-1 bg-indigo-500 rounded  mb-4"></div>
+      </div>
+    </div>
+
+    <div class="overflow-hidden mx-auto relative aboutbody">
+      <div id="aboutbody" class="w-full h-screen relative"></div>
+
+
+      <div class="p-8 grid place-content-center mx-auto absolute top-0 h-full w-full">
+        <section class="text-gray-600 body-font">
+          <div class="container px-5 py-8 mx-auto flex flex-col bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 rounded-xl overflow-hidden">
+            <div class="lg:w-4/6 mx-auto">
+
+              <div class="flex flex-col sm:flex-row mt-10">
+                <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+                  <div class="w-32 h-32 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
+                   <img src="./images/avatar.jpeg" alt="error" class="h-full w-full rounded-md">
+                  </div>
+                  <div class="flex flex-col items-center text-center justify-center">
+                    <h2 class="font-medium title-font mt-4 text-lg text-white">Analog sombra</h2>
+                    <p class="text-base text-white">My Name is Karan Kumar also knows as analog sombra</p>
+                  </div>
+                </div>
+                <div
+                  class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+                  <p class="leading-relaxed text-lg mb-4 text-white">You already heard about me, My nick name is Sombra, My Death of birth is 19-12-2003, My Nationality is Indian, I am living in Gujrat India since childhood but my birthplace is not Gujrat and bla bla bla!!!! other stuff.<br>
+                  <br>  Coincidently I started my coding journey when I was in 10th class because at that time I am interested in gaming like other children but at that time I decided not to play games I will create my games, now I am not a game developer but my step going through it.</p>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+      </div>
+    </div>
+
+    <section class="text-gray-600 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-20">
+
+          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 dark:text-white">Some of my words
+          </h1>
+
+        </div>
+        <div class="flex flex-wrap">
+          <div
+            class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 dark:border-gray-400 border-opacity-60">
+            <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2 dark:text-gray-100">Life</h2>
+            <p class="leading-relaxed text-base mb-4 dark:text-gray-300">Each and every millisecond the chemical
+              reactions perform in our body it's called life.</p>
+
+          </div>
+          <div
+            class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 dark:border-gray-400 border-opacity-60">
+            <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2 dark:text-gray-100">Death</h2>
+            <p class="leading-relaxed text-base mb-4 dark:text-gray-300">When the chemical reactions stop in the human body
+              it's called Death.
+            </p>
+
+          </div>
+          <div
+            class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 dark:border-gray-400 border-opacity-60">
+            <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2 dark:text-gray-100">Time</h2>
+            <p class="leading-relaxed text-base mb-4 dark:text-gray-300">Time is nothing but the fourth dimension for
+              our universe and
+              define object placements.</p>
+
+          </div>
+          <div
+            class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 dark:border-gray-400 border-opacity-60">
+            <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2 dark:text-gray-100">Love</h2>
+            <p class="leading-relaxed text-base mb-4 dark:text-gray-300">Love is the word that you can't see, can't
+              touch, and so on it's just a four-letter word not even define any human emotions clearly.</p>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
   </main>
   <!-- about end here -->
   <!-- works start here -->
