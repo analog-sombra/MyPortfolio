@@ -4,24 +4,58 @@
 //     location.reload();
 // });
 
-setTimeout(() => {
-  gsap.to(".loading", {
-    opacity: 0,
-    onComplete: () => {
-      gsap.to("#load", {
-        opacity: 0,
-        y: -400,
-        onComplete: () => {
-          document.querySelector("#load").classList.add("hidden");
-        },
-      });
+
+// const load = () => {
+//   gsap.to("#load", {
+//     opacity: 0,
+//     y: -400,
+//     onComplete: () => {
+//       document.querySelector("#load").classList.add("hidden");
+//     },
+//   });
+//   homeInit();
+// };
+const initlisize = () => {
+  document.querySelector("#load").classList.add("hidden");
+  // homeInit();
+
+}
 
 
-        homeInit();
-    
-    },
-  });
-}, 3000);
+const remove_loader = () => {
+  gsap.timeline({ onComplete: initlisize })
+    .to("#loader", { duration: 0.4, scale: 6 })
+    .to("#loader-1", { duration: 0.4, x: -40, y: -40, opacity: 0 })
+    .to("#loader-2", { duration: 0.4, x: 40, y: -40, opacity: 0 }, "-=0.2")
+    .to("#loader-4", { duration: 0.4, x: 40, y: 40, opacity: 0 }, "-=0.2")
+    .to("#loader-3", { duration: 0.4, x: -40, y: 40, opacity: 0 }, "-=0.2")
+    .to("#load", { opacity: 0, y: -1000, duration: 0.2 });
+  setTimeout(() => {
+    homeInit();
+  }, 1200);
+}
+const start_loading = () => {
+  let data = gsap.timeline({ repeat: 2, onComplete: remove_loader })
+    .to("#loader-1", { duration: 0.4, x: -40, y: -40, ease: "expo.out" })
+    .to("#loader-1", { duration: 0.4, x: 0, y: 0, ease: "expo.out" })
+    .to("#loader-2", { duration: 0.4, x: 40, y: -40, ease: "expo.out" }, "-=0.4")
+    .to("#loader-2", { duration: 0.4, x: 0, y: 0, ease: "expo.out" })
+    .to("#loader-4", { duration: 0.4, x: 40, y: 40, ease: "expo.out" }, "-=0.4")
+    .to("#loader-4", { duration: 0.4, x: 0, y: 0, ease: "expo.out" })
+    .to("#loader-3", { duration: 0.4, x: -40, y: 40, ease: "expo.out" }, "-=0.4")
+    .to("#loader-3", { duration: 0.4, x: 0, y: 0, ease: "expo.out" })
+    .to("#loader-1", { duration: 0.4, x: -40, y: -40, ease: "expo.out" }, "-=0.4")
+    .to("#loader-1", { duration: 0.4, x: 0, y: 0, ease: "expo.out" })
+    .to("#loader", { duration: 1, rotate: 135, ease: "expo.out", boxShadow: "0 0 0px 100px rgba(32, 211, 238,0)" },)
+}
+gsap.timeline({ onComplete: start_loading })
+  .from("#loader-1", { duration: 0.4, x: -1000, y: -1000, ease: "expo.out" })
+  .from("#loader-2", { duration: 0.4, x: 1000, y: -1000, ease: "expo.out" })
+  .from("#loader-4", { duration: 0.4, x: 1000, y: 1000, ease: "expo.out" })
+  .from("#loader-3", { duration: 0.4, x: -1000, y: 1000, ease: "expo.out" })
+
+
+
 
 setTimeout(() => {
   window.scrollTo(0, 0);
