@@ -83,8 +83,8 @@
     }
 
     #loader {
-      width: 300px;
-      height: 300px;
+      width: 150px;
+      height: 150px;
       display: grid;
       place-items: center;
       grid-template-columns: 1fr 1fr;
@@ -203,6 +203,14 @@
 
   <!-- Home Start -->
   <main class="bg-white dark:bg-[#2F2F47]" id="page1">
+    <div class="fixed bottom-0 left-0 h-screen w-full">
+      <div class="absolute bottom-0 left-5 hidden lg:block">
+        <div style="writing-mode: vertical-rl;" class="text-[#48406A] dark:text-gray-50 font-normal text-md">
+          analogsombra@gmail.com</div>
+        <div class="bg-[#48406A] dark:bg-gray-50 w-[2px] h-28 translate-x-[8px] mt-2"></div>
+      </div>
+    </div>
+
     <section class="h-screen relative">
       <div class="absolute h-full w-full grid place-items-center">
         <div class="m-10 mt-20">
@@ -273,7 +281,7 @@
 
 
 
-      <div class="p-8 grid place-content-center mx-auto  w-full">
+      <div class="p-8 grid place-content-center mx-auto  w-full ">
         <div
           class="container px-5 py-4 my-6 mx-auto flex flex-col bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 rounded-xl overflow-hidden">
           <div class="lg:w-4/6 mx-auto">
@@ -1184,18 +1192,23 @@
 
   <!-- scroll to top button start  -->
   <a href="#top" id="top-scroll"
-    class="block text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center fixed right-2 bottom-2"><i
+    class="block text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-md text-sm px-5 py-2.5 text-center fixed right-2 bottom-2"><i
       class="fa-solid fa-arrow-up-long"></i></a>
   <!-- scroll to top button end -->
 
   <!-- loader start here -->
-  <div id="load" class="w-full h-screen bg-gray-100 fixed top-0 left-0 grid place-items-center" style="z-index: 9909999">
-    <div id="loader_con">
-      <div id="loader">
-        <div id="loader-1"></div>
-        <div id="loader-2"></div>
-        <div id="loader-3"></div>
-        <div id="loader-4"></div>
+  <div id="load" class="w-full h-screen bg-gray-100 fixed top-0 left-0" style="z-index: 9909999">
+    <div class="mt-12 w-full">
+      <h2 class="text-center text-5xl font-semibold text-[#48406A]" id="loadingtext">Loading...</h2>
+    </div>
+    <div class="w-full h-screen absolute top-0 left-0">
+      <div id="loader_con">
+        <div id="loader">
+          <div id="loader-1"></div>
+          <div id="loader-2"></div>
+          <div id="loader-3"></div>
+          <div id="loader-4"></div>
+        </div>
       </div>
     </div>
     <!-- loader start end -->

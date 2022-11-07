@@ -24,7 +24,7 @@ const initlisize = () => {
 
 const remove_loader = () => {
   gsap.timeline({ onComplete: initlisize })
-    .to("#loader", { duration: 0.4, scale: 6 })
+    .to("#loader", { duration: 0.4, scale: 10 })
     .to("#loader-1", { duration: 0.4, x: -40, y: -40, opacity: 0 })
     .to("#loader-2", { duration: 0.4, x: 40, y: -40, opacity: 0 }, "-=0.2")
     .to("#loader-4", { duration: 0.4, x: 40, y: 40, opacity: 0 }, "-=0.2")
@@ -793,3 +793,22 @@ for (var i in text) {
     $(".loading").append($("<span>").text(text[i]));
   }
 }
+
+
+const loadingphrases = [
+  "Loading!...",
+  "Please wait...",
+];
+const loadingel = document.querySelector("#loadingtext");
+
+const loadingfx = new TextScramble(loadingel);
+
+let loadingcounter = 0;
+const loadingIntro = () => {
+  loadingfx.setText(loadingphrases[loadingcounter]).then(() => {
+    setTimeout(loadingIntro, 3000);
+  });
+  loadingcounter = (loadingcounter + 1) % loadingphrases.length;
+};
+
+loadingIntro();
